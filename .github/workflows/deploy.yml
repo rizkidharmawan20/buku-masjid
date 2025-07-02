@@ -1,0 +1,52 @@
+name: Deploy to cPanel via FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v4
+
+    - name: Sync core Laravel files via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.gumilangmajuselaras.com
+        username: gumilang
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        local-dir: ./
+        remote-dir: /home/gumilang/buku-masjid-master_laravel_root/
+        exclude:
+          - .git/**
+          - .github/**
+          - .env
+          - .env.example
+          - storage/**
+          - .vscode/**
+          - tests/**
+          - README.md
+          - .gitignore
+          - .gitattributes
+          - composer.lock
+          - package-lock.json
+          - yarn.lock
+          - phpunit.xml
+          - webpack.mix.js
+          - Dockerfile
+          - docker-compose.yml
+          - docker-compose-local.yml
+          - .nvmrc
+          - .phpunit-watcher.yml
+          - .rnd
+          - pint.json
+          - server.php
+          - test-rest-client-laravel-passport.json
+          - apple-touch-icon.png
+          - favicon.ico
