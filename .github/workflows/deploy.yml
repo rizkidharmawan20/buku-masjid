@@ -19,7 +19,7 @@ jobs:
       with:
         server: ftp.gumilangmajuselaras.com
         username: gumilang
-        password: ${{ secrets.FTP_PASSWORD }}
+        password: Maju-S3L4r4$!
         port: 21
         local-dir: ./
         server-dir: /home/gumilang/buku-masjid-master_laravel_root/
